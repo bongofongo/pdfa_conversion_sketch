@@ -102,19 +102,19 @@ let get_info (pdf:Pdf.t) (key:string) =
   let v_opt =
     match lookup_direct pdf "/Info" pdf.trailerdict with
     | Some (Dictionary dlist) ->
-      List.find_opt (fun (n, obj) -> n = key) dlist
+      List.find_opt (fun (n, _) -> n = key) dlist
     | _ -> None 
   in
   match v_opt with
-  | Some (n, obj) ->
-      (match obj with
+  | _ -> None 
+  | Some (_, obj) ->
+      match obj with
       | String s -> Some s
       | Name n -> Some n
-      | _ -> None)
-  | _ -> None 
+      | _ -> None
 
 (* Search and replace, returning option nodes *)
-let rec search_replace_tag t data (nodes:nodes) =
+let search_replace_tag t data (nodes:nodes) =
   let tag_exists = function
     | `El (((_, tag), _), _) when tag = t ->
         true
@@ -192,7 +192,6 @@ let xmp_insertion (pdf:Pdf.t) (nodes:nodes) : int =
   addobj pdf (Stream (ref (ldict, Got bytes)))
 
 let add_pdfaid (pdf:Pdf.t) =
-  let nodes_opt = xmp_of_pdf pdf in
   match xmp_of_pdf pdf with
   | None -> make_xmp_packet () |> insert_pdfaid_tag 
   | Some n -> 
