@@ -37,17 +37,16 @@ def verify_pdf (cmd):
         raise RuntimeError(f"verify_pdf: cmd: {cmd}")
     text = (ret.stdout or "") if ret is not None else ""
 
-    name = reg_name(text)
+    pdf_name = Path(reg_name(text))
     failed = reg_failed_rules(text)
     specs, descs, errmsgs, ctxs = reg_rules(text)
 
-    lines = [f"name={name}", f"failedRules={failed}"]
+    lines = [f"failedRules={failed}"]
 
-    # If there are failures, include brief per-rule details
     if failed != "0":
         n = min(len(specs), len(descs), len(errmsgs), len(ctxs))
         for i in range(n):
-            lines.append(f"- {specs[i]} | {descs[i]} | {errmsgs[i]} | ctx={ctxs[i]}")
+            lines.append(f"\n|  {specs[i]}\n|  {descs[i]}\n|  {errmsgs[i]}\n|  ctx={ctxs[i]}")
 
     return "\n".join(lines)
 

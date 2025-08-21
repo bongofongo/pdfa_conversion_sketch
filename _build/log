@@ -2,8 +2,7 @@
 # OCAMLPARAM: unset
 # Shared cache: enabled-except-user-rules
 # Shared cache location: /Users/oliverfong/.cache/dune/db
-# Workspace root: "/Users/oliverfong/Documents/uchicago/reg
-# internship/final_sketch/pdfaer"
+# Workspace root: /Users/oliverfong/Documents/uchicago/reg/final_sketch/pdfaer
 # Auto-detected concurrency: 8
 # Dune context:
 #  { name = "default"
@@ -14,4 +13,4 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /Users/oliverfong/.opam/4.14.1/bin/ocamlc.opt -config > /var/folders/6w/5pxr8tmd66372jcwfz26gzd00000gn/T/dune_205b65_output
+$ /Users/oliverfong/.opam/4.14.1/bin/ocamlc.opt -config > /var/folders/6w/5pxr8tmd66372jcwfz26gzd00000gn/T/dune_79892c_output

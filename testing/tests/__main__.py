@@ -14,7 +14,6 @@ ROOT = DIR.parent
 OPATH = ROOT / 'outfiles'
 IPATH = ROOT / 'infiles'
 LPATH = ROOT / 'logs'
-FLAVOR = '1b'
 
 def ensure_dirs(opath:Path, lpath:Path, ipath:Path) -> None:
     opath.mkdir(parents=True, exist_ok=True)
@@ -42,10 +41,10 @@ def verify (opath:Path, pdfa_flavor:str) -> str:
         try:
             res = verify_pdf(cmd)
         except Exception as e:
-            res = f'name={pdfa.name}\nfailedRules=ERR\n- exception | {e} | |'
-        head = f'===== {pdfa.name} ====='
+            res = f'name={pdfa.name}\nfailedRules=ERR\n- exception={e}'
+        head = f'==== {pdfa.name} ===='
         res_stanzas.append('\n'.join([head, res, '']))
-        print(f'[verified] {pdfa.name}')
+        print(f'[verified]: {pdfa.name}')
     return '\n'.join(res_stanzas)
 
 def main ():
@@ -53,7 +52,7 @@ def main ():
 
     pdfaer_path = get_exec_path()
     if pdfaer_path is None:
-        print(f'main: error retrieving pdfaer.exe path')
+        print(f'[error] __main__.py main: error retrieving pdfaer.exe path')
         exit(1)
 
     convert(Path(pdfaer_path))
@@ -68,14 +67,3 @@ def main ():
 
 if __name__ == '__main__':
     main()
-
-
-     
-
-
-
-
-
-
-
-
