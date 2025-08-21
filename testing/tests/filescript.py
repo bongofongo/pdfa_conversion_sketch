@@ -28,13 +28,3 @@ def get_exec_path ():
         if Path(p).exists() and os.access(p, os.X_OK):
             return str(p)
     return None
-
-def get_pdflist (pdf_path: Path):
-    for path in pdf_path.glob('*.pdf'):
-        if path.is_file():
-            yield path
-
-
-
-
-

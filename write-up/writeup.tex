@@ -5,9 +5,9 @@
 \setstretch{1.15}
 \usepackage{hyperref}
 
-\title{pdfa-converter}
+\title{'pdfaer'}
 \author{Oliver Fong}
-\date{August 20, 2025}
+\date{\today}
 
 \begin{document}
 \maketitle
@@ -63,6 +63,21 @@ $ opam exec -- dune ocaml top > .ocamlinit
 $ utop
 \end{verbatim}
 
+\section*{Testing}
+To use the python testing suite:
+\begin{verbatim}
+project_root/testing $ python{3} -m tests
+; OR
+project_root/testing $ python3 tests/__main__.py
+\end{verbatim}
+
+I've organized the python tests into these modules:
+\begin{itemize}
+  \item \textbf{exec\_tools.py}: Contains functions to run \textbf{verapdf} and \textbf{pdfaer.exe}, and looks for the latter in the \_build/app/ directory. As of now, the .icc file isn't being supplied to the executable as an option.
+  \item \textbf{filter\_verapdf.py}: This one supplies some simple regex functionality to filter through verapdf's XML output. Is the new library file which used to be process\_verapdf.py. 
+  \item \textbf{filescript.py}: Contains helper functions for trying different common filepaths for the expected executable file and .icc file.
+  \item \textbf{\_\_main\_\_.py}: The actual runfile - first converts all the pdfs in the infiles directory into pdfa files in the outfiles directory, then runs verapdf on them all compiling them in a date-timestamped logfile in logs/
+\end{itemize}
 \section*{Discussion}
 \textbf{Strengths:} clean modular structure, type safety, reproducible builds.  
 \textbf{Limitations:} domain-specific scope, limited user-facing documentation.  
