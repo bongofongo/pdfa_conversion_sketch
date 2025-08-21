@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/pdfaer/META"
+  "_build/install/default/lib/pdfaer/dune-package"
+  "_build/install/default/lib/pdfaer/opam"
+]
+bin: [
+  "_build/install/default/bin/pdfaer"
+]

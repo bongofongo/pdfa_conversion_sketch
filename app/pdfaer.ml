@@ -1,5 +1,4 @@
-let () = print_endline Lib.message
-
+Printf.printf "Library Opening ..."
 (* Local Variables: *)
 (* mode: tuareg *)
 (* End: *)

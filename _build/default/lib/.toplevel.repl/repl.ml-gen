@@ -1,0 +1,7 @@
+Clflags.include_dirs :=
+  [ "/Users/oliverfong/.opam/4.14.1/lib/camlpdf"
+  ; "/Users/oliverfong/.opam/4.14.1/lib/ezxmlm"
+  ; "/Users/oliverfong/.opam/4.14.1/lib/ocaml/compiler-libs"
+  ; "/Users/oliverfong/.opam/4.14.1/lib/xmlm"
+  ];
+Topmain.main ()

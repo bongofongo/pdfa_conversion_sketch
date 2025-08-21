@@ -43,13 +43,25 @@ such that excryption and decryption is its own module and so on and so forth.
 \section*{Build and Usage}
 The project uses Dune for compilation:
 \begin{verbatim}
-dune build
+; Include this stanza in lib/dune for 
+; custom repl that works with camlpdf
+(toplevel
+ (name repl)
+ (libraries camlpdf ezxmlm xmlm))
 \end{verbatim}
+To build the project 
 \begin{verbatim}
-opam exec -- dune ocaml top-module lib/example_module.ml > ./.ocamlinit && utop
+$ opam exec -- dune build
 \end{verbatim}
-There are some problems using camlpdf with dune, so this latter command is
-useful for using utop with dune.
+To use with custom REPL
+\begin{verbatim}
+$ opam exec -- dune build lib/repl.exe
+\end{verbatim}
+To use utop as the REPL instead.
+\begin{verbatim}
+$ opam exec -- dune ocaml top > .ocamlinit
+$ utop
+\end{verbatim}
 
 \section*{Discussion}
 \textbf{Strengths:} clean modular structure, type safety, reproducible builds.  
